@@ -2,17 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('Ambil Kode') {
+        stage('1. Ambil Kode') {
             steps {
-                echo 'Mengambil repository dari GitHub...'
+                echo 'Mengambil kode terbaru dari GitHub...'
+                // Jenkins otomatis melakukan 'git clone' disini
             }
         }
         
-        stage('Jalankan Perintah Soal') {
+        stage('2. Jalankan Unit Test') {
             steps {
-                echo 'Menjalankan instruksi soal nomor 2...'
-                // Ini perintah wajib sesuai soal:
-                powershell 'php index.php'
+                echo 'Menjalankan pengujian PHP...'
+                // Perintah untuk menjalankan file test tadi
+                bat 'php MatematikaTest.php'
             }
         }
     }
