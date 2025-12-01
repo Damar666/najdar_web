@@ -1,12 +1,13 @@
 node {
-    stage('1. Ambil Kode dari GitHub') {
-        echo 'Mengambil kode terbaru...'
+    // Stage 1: Ambil Kode
+    stage('1. Ambil Kode') {
+        // Perintah wajib supaya Jenkins mengambil file phpunit.phar dari GitHub
         checkout scm
     }
     
+    // Stage 2: Jalankan Test
     stage('2. Jalankan PHPUnit') {
-        echo 'Menjalankan Unit Test dengan PHPUnit Asli...'
-        // Kita jalankan perintah yang SAMA PERSIS dengan yang sukses di terminal kamu tadi
+        // Jalankan perintah tes menggunakan file phar yang sudah ada di repo
         bat 'php phpunit.phar MatematikaTest.php'
     }
 }
