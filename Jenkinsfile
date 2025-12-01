@@ -1,20 +1,14 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('1. Ambil Kode') {
-            steps {
-                echo 'Mengambil kode terbaru dari GitHub...'
-                // Jenkins otomatis melakukan 'git clone' disini
-            }
-        }
-        
-        stage('2. Jalankan Unit Test') {
-            steps {
-                echo 'Menjalankan pengujian PHP...'
-                // Perintah untuk menjalankan file test tadi
-                bat 'php MatematikaTest.php'
-            }
-        }
+node {
+    // Stage 1: Ambil Kode dari GitHub
+    stage('Checkout Code') {
+        echo 'Mengambil kode terbaru dari GitHub...'
+        checkout scm
+    }
+    
+    // Stage 2: Jalankan Test
+    stage('Jalankan Unit Test') {
+        echo 'Menjalankan Unit Test PHP...'
+        // Kita pakai perintah bat karena Windows
+        bat 'php MatematikaTest.php'
     }
 }
