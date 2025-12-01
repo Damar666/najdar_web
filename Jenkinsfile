@@ -1,14 +1,12 @@
 node {
-    // Stage 1: Ambil Kode dari GitHub
-    stage('Checkout Code') {
-        echo 'Mengambil kode terbaru dari GitHub...'
+    stage('1. Ambil Kode dari GitHub') {
+        echo 'Mengambil kode terbaru...'
         checkout scm
     }
     
-    // Stage 2: Jalankan Test
-    stage('Jalankan Unit Test') {
-        echo 'Menjalankan Unit Test PHP...'
-        // Kita pakai perintah bat karena Windows
-        bat 'php MatematikaTest.php'
+    stage('2. Jalankan PHPUnit') {
+        echo 'Menjalankan Unit Test dengan PHPUnit Asli...'
+        // Kita jalankan perintah yang SAMA PERSIS dengan yang sukses di terminal kamu tadi
+        bat 'php phpunit.phar MatematikaTest.php'
     }
 }
